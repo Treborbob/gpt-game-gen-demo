@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Slot Game Simulation</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <h1>Slot Game Simulation</h1>
+        <table id="grid"></table>
+        <div class="controls">
+            <div class="inputs">
+                <label>Simulations: <input type="number" id="simulation-count" value="10000" min="1" style="width: 80px;"></label>
+                <label>Bet: <input type="number" id="bet" value="1" min="1" style="width: 60px;"></label>
+                <label>Balance: <input type="number" id="balance-input" value="1000000" min="0" style="width: 120px;" onchange="updateBalance()"></label>
+            </div>
+            <div class="buttons">
+                <button id="spin-button">Spin</button>
+                <button id="autoplay-button">Autoplay</button>
+                <button id="simulate-button">Simulate Spins</button>
+            </div>
+        </div>
+        <div class="stats">
+            <p>Number of Spins: <span id="spins">0</span></p>
+            <p>Total RTP: <span id="rtp">0%</span></p>
+            <p>Total Wager: <span id="total-wager">0</span></p>
+            <p>Total Win: <span id="total-win">0</span></p>
+            <p>Net Position: <span id="net-position">0</span></p>
+            <p>Bonus Trigger Count: <span id="bonus-counter">0</span></p>
+        </div>
+        <div id="progress" style="display: none;">
+            <p>Simulating Spins: <span id="progress-count">0</span> / <span id="progress-total">0</span></p>
+        </div>
+
+        <div id="bonus-modal">
+            <h2>Bonus Game Triggered!</h2>
+            <p>Enjoy your bonus round!</p>
+            <button onclick="closeBonusModal()">Close</button>
+        </div>
+        <script type="module" src="symbols.js"></script>
+        <script type="module" src="ui.js"></script>
+        <script type="module" src="simulation.js"></script>
+        <script type="module" src="game.js"></script>
+        <script type="module" src="main.js"></script>
+    </body>
+</html>

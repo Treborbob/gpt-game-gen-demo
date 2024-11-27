@@ -1,0 +1,86 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 20px;
+    background-color: #121212; /* Dark background */
+    color: #ffffff; /* Light text */
+}
+
+table {
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+td {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #444; /* Subtle border */
+    text-align: center;
+    font-size: 24px;
+    color: #ffffff;
+    background-color: #1e1e1e; /* Slightly lighter than background */
+}
+
+td.animate {
+    animation: fall 0.5s ease-in-out;
+}
+
+td.highlight {
+    background-color: #ffcc00; /* Highlight for winning clusters */
+    color: #000000; /* Contrasting text for highlights */
+}
+
+.controls {
+    margin-top: 20px;
+}
+
+button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #444; /* Dark button */
+    color: #ffffff; /* Light text */
+    border: 1px solid #555; /* Subtle border */
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555; /* Slight hover effect */
+}
+
+.stats {
+    margin-top: 20px;
+    text-align: left;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#bonus-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background: #333333; /* Dark modal background */
+    border: 2px solid #555;
+    color: #ffffff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.8);
+}
+
+#bonus-modal h2 {
+    margin: 0;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
