@@ -10,6 +10,7 @@ export function updateStats({ spins, totalBets, totalWinnings, netPosition, rtp,
 export function updateBalanceInput(balance) {
     document.getElementById("balance-input").value = balance.toFixed(2);
 }
+
 export function showProgress(current, total) {
     const progressElement = document.getElementById("progress");
     if (!progressElement) {
@@ -25,6 +26,7 @@ export function hideProgress() {
     const progressElement = document.getElementById("progress");
     if (progressElement) progressElement.style.display = "none";
 }
+
 export function highlightClusters(gridElement, clusters) {
     const rows = gridElement.getElementsByTagName("tr");
     clusters.forEach(cluster => {
@@ -33,4 +35,22 @@ export function highlightClusters(gridElement, clusters) {
             cell.classList.add("highlight");
         });
     });
+}
+
+export function showBonusModal() {
+    const bonusModal = document.getElementById("bonus-modal");
+    const modalBackdrop = document.getElementById("modal-backdrop");
+    if (bonusModal && modalBackdrop) {
+        bonusModal.style.display = "block";
+        modalBackdrop.style.display = "block";
+    }
+}
+
+export function closeBonusModal() {
+    const bonusModal = document.getElementById("bonus-modal");
+    const modalBackdrop = document.getElementById("modal-backdrop");
+    if (bonusModal && modalBackdrop) {
+        bonusModal.style.display = "none";
+        modalBackdrop.style.display = "none";
+    }
 }

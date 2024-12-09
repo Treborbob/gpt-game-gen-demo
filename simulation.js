@@ -13,7 +13,7 @@ export async function simulateSpins(count, gridElement, gridSize, randomSymbol, 
 
     for (let i = 0; i < count; i++) {
         if (!isSimulating) break; // Stop simulation if interrupted
-        spin(gridElement, gridSize, randomSymbol, bet, false); // Skip grid updates
+        spin(gridElement, gridSize, randomSymbol, bet, false, true); // Pass true to indicate simulation
         if (i % 100 === 0) {
             showProgress(i + 1, count); // Update progress every 100 spins
             await new Promise(resolve => setTimeout(resolve, 0)); // Allow UI updates
@@ -22,8 +22,6 @@ export async function simulateSpins(count, gridElement, gridSize, randomSymbol, 
 
     stopSimulation(); // Stop the simulation when done
 }
-
-
 
 // Stop the simulation
 export function stopSimulation() {

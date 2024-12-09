@@ -1,4 +1,4 @@
-import { spin } from "./game.js";
+import { spin, resetGame } from "./game.js";
 import { simulateSpins, stopSimulation, initializeSimulation } from "./simulation.js";
 import { symbols, probabilities } from "./symbols.js";
 
@@ -36,14 +36,15 @@ const randomSymbol = (() => {
 function toggleAutoplay() {
     autoplay = !autoplay;
     const autoplayButton = document.getElementById("autoplay-button");
+    const autoplaySpeed = parseInt(document.getElementById("autoplay-speed").value) || 5000; // Default to 5 seconds
 
     if (autoplay) {
         autoplayButton.textContent = "Stop Autoplay";
         function autoplaySpin() {
             if (!autoplay) return; // Exit if autoplay is stopped
             const bet = parseInt(document.getElementById("bet").value);
-            spin(gridElement, gridSize, randomSymbol, bet);
-            autoplayTimeout = setTimeout(autoplaySpin, 500); // Adjust delay as needed
+            spin(gridElement, gridSize, randomSymbol, bet, true); // Pass true to indicate autoplay
+            autoplayTimeout = setTimeout(autoplaySpin, autoplaySpeed); // Use the value from the input
         }
         autoplaySpin();
     } else {
@@ -52,10 +53,19 @@ function toggleAutoplay() {
     }
 }
 
+function updateBalance() {
+    const balanceInput = document.getElementById("balance-input");
+    balance = parseFloat(balanceInput.value);
+}
+
 // Wire up buttons
 document.getElementById("spin-button").addEventListener("click", () => {
     const bet = parseInt(document.getElementById("bet").value);
-    spin(gridElement, gridSize, randomSymbol, bet);
+    spin(gridElement, gridSize, randomSymbol, bet, true); // Pass true to indicate manual spin and update the grid
+});
+
+document.getElementById("reset-button").addEventListener("click", () => {
+    resetGame(gridElement, gridSize, randomSymbol);
 });
 
 // Simulation button wiring
@@ -68,7 +78,7 @@ simulateButton.addEventListener("click", () => {
     if (simulateButton.textContent === "Stop Simulation") {
         stopSimulation(); // Stop the simulation
     } else {
-        simulateSpins(count, gridElement, gridSize, randomSymbol, bet); // Start the simulation
+        simulateSpins(count, gridElement, gridSize, randomSymbol, bet, true); // Start the simulation
     }
 });
 

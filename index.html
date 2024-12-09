@@ -7,18 +7,48 @@
         <link rel="stylesheet" href="styles.css" />
     </head>
     <body>
-        <h1>Slot Game Simulation</h1>
+        <h1>Cluster Game Simulation</h1>
         <table id="grid"></table>
         <div class="controls">
             <div class="inputs">
-                <label>Simulations: <input type="number" id="simulation-count" value="10000" min="1" style="width: 80px;"></label>
-                <label>Bet: <input type="number" id="bet" value="1" min="1" style="width: 60px;"></label>
-                <label>Balance: <input type="number" id="balance-input" value="1000000" min="0" style="width: 120px;" onchange="updateBalance()"></label>
+                <label
+                    >Simulations:
+                    <input
+                        type="number"
+                        id="simulation-count"
+                        value="10000"
+                        min="1"
+                        style="width: 80px"
+                /></label>
+                <label
+                    >Bet:
+                    <input
+                        type="number"
+                        id="bet"
+                        value="1"
+                        min="1"
+                        style="width: 60px"
+                /></label>
+                <label
+                    >Balance:
+                    <input
+                        type="number"
+                        id="balance-input"
+                        value="1000000"
+                        min="0"
+                        style="width: 120px;"
+                        onchange="updateBalance()"
+                /></label>
+                <label>
+                    Autoplay Speed (ms):
+                    <input type="number" id="autoplay-speed" value="5000" min="1000" style="width: 80px" />
+                </label>
             </div>
             <div class="buttons">
                 <button id="spin-button">Spin</button>
                 <button id="autoplay-button">Autoplay</button>
                 <button id="simulate-button">Simulate Spins</button>
+                <button id="reset-button">Reset Game</button>
             </div>
         </div>
         <div class="stats">
@@ -29,8 +59,11 @@
             <p>Net Position: <span id="net-position">0</span></p>
             <p>Bonus Trigger Count: <span id="bonus-counter">0</span></p>
         </div>
-        <div id="progress" style="display: none;">
-            <p>Simulating Spins: <span id="progress-count">0</span> / <span id="progress-total">0</span></p>
+        <div id="progress" style="display: none">
+            <p>
+                Simulating Spins: <span id="progress-count">0</span> /
+                <span id="progress-total">0</span>
+            </p>
         </div>
 
         <div id="bonus-modal">
@@ -38,10 +71,15 @@
             <p>Enjoy your bonus round!</p>
             <button onclick="closeBonusModal()">Close</button>
         </div>
+        <div id="modal-backdrop"></div>
         <script type="module" src="symbols.js"></script>
         <script type="module" src="ui.js"></script>
         <script type="module" src="simulation.js"></script>
         <script type="module" src="game.js"></script>
         <script type="module" src="main.js"></script>
+        <script type="module">
+            import { closeBonusModal } from "./ui.js";
+            window.closeBonusModal = closeBonusModal;
+        </script>
     </body>
 </html>
